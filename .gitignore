@@ -1,0 +1,6 @@
+*.class
+dist/
+dist/*.*
+nbproject/private/
+build/
+build/*.*
