@@ -19,7 +19,10 @@ package jtlc.main;
 import com.alee.laf.WebLookAndFeel;
 import com.alee.managers.language.LanguageManager;
 import jtlc.main.common.Settings;
-import jtlc.main.controller.Controller;
+import jtlc.main.controller.AbstractController;
+import jtlc.main.controller.BaseController;
+import jtlc.main.controller.ExportController;
+import jtlc.main.controller.StepsController;
 import jtlc.view.MainView;
 
 /**
@@ -42,8 +45,16 @@ public class Start {
         LanguageManager.setLanguage(Settings.getLocale());
         // Initialize jTLC main view and controller
         MainView view = new MainView();
-        Controller controller = new Controller(view);
+        // Set Default view for controllers
+        AbstractController.setMainView(view);
+        // Initialize each controllers
+        BaseController controller = new BaseController();
+        StepsController stepsController = new StepsController();
+        ExportController exportController = new ExportController();
         // Set observer for main view
         view.addObserver(controller);
+        view.addObserver(stepsController);
+        view.addObserver(exportController);
+        
     }
 }
